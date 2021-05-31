@@ -1,0 +1,62 @@
+import java.net.*;
+import java.io.*;
+public class Server {
+	public static void main(String[] args) throws IOException{
+//		1d array
+//		String[] hardware = {"Mouse", "Keyboard", "CPU"};
+//		print 1d array
+//		for (int i = 0; i < hardware.length; i++) {
+//			  System.out.println(hardware[i]);
+//			}
+//		2d array
+		String[][] a = {
+			      {"Mouse", "Keyboard", "CPU"}, 
+			      {"100", "200", "300"}, 
+			};
+//		print 2d array
+//		for (int i = 0; i < a.length; ++i) {
+//            for(int j = 0; j < a[i].length; ++j) {
+//                System.out.println(a[i][j]);
+//            }
+//        }
+		ServerSocket ss=new ServerSocket(4999);
+				
+		Socket s=ss.accept();
+		
+		PrintWriter pr=new PrintWriter(s.getOutputStream());
+		for (int i = 0; i < a.length; ++i) {
+            for(int j = 0; j < a[i].length; ++j) {
+                System.out.println(a[i][j]);
+        		pr.println(a[i][j]);
+            }
+        }
+		
+		pr.flush();
+//		ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
+//
+//	    ObjectOutputStream oos = new ObjectOutputStream(s.getOutputStream());
+//
+//	    oos.writeObject(a);
+		System.out.println("Welcome to Computer Hardware Management");
+		InputStreamReader in=new InputStreamReader(s.getInputStream());
+		BufferedReader bf=new BufferedReader(in);
+		String str=bf.readLine();
+		System.out.println("Client:"+str);
+		
+//		PrintWriter pr=new PrintWriter(s.getOutputStream());
+		pr.println("You are welcome");
+		pr.flush();
+		
+		str=bf.readLine();
+		System.out.println("Client:"+str);
+		
+		pr.println("We can provide you Its price is Rs.100 Is there any other thing you want");
+		pr.flush();
+		
+		str=bf.readLine();
+		System.out.println("Client:"+str);
+		
+		pr.println("Ok come back soon");
+		pr.flush();
+	}
+}
