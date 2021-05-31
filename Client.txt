@@ -1,0 +1,56 @@
+import java.net.*;
+import java.util.Scanner;
+import java.io.*;
+public class Client {
+	public static void main(String[] args) throws IOException{
+		Socket s=new Socket("localhost",4999);
+		String num;
+		Scanner ins=new Scanner(System.in);
+//		System.out.println("Menu");
+//		System.out.println("View 1");
+//		System.out.println("Exit 2");
+		
+		InputStreamReader in=new InputStreamReader(s.getInputStream());
+		BufferedReader bf=new BufferedReader(in);
+		String str=bf.readLine();
+		System.out.println(str);
+		str=bf.readLine();
+		System.out.println(str);
+		str=bf.readLine();
+		System.out.println(str);
+		str=bf.readLine();
+		System.out.println(str);
+		str=bf.readLine();
+		System.out.println(str);
+		
+		System.out.println("What is your name");
+		num=ins.nextLine();
+
+		PrintWriter pr=new PrintWriter(s.getOutputStream());
+//		pr.println("Thanks");
+		pr.println(num);
+		pr.flush();
+		
+	
+		
+		
+		
+		str=bf.readLine();
+		System.out.println("Server:"+str+" "+num);
+		
+		System.out.println("What do you want(Mouse, Key board) etc");
+		num=ins.nextLine();
+		pr.println(num);
+		pr.flush();
+		
+		str=bf.readLine();
+		System.out.println("Server:"+str);
+		
+		num=ins.nextLine();
+		pr.println(num);
+		pr.flush();
+		
+		str=bf.readLine();
+		System.out.println("Server:"+str);
+	}
+}
