@@ -1,0 +1,33 @@
+import java.net.*;
+import java.io.*;
+public class Server {
+	public static void main(String[] args) throws IOException{
+		ServerSocket ss=new ServerSocket(4999);
+				
+		Socket s=ss.accept();
+		
+		PrintWriter pr=new PrintWriter(s.getOutputStream());
+
+		System.out.println("Welcome to Computer Hardware Management");
+		InputStreamReader in=new InputStreamReader(s.getInputStream());
+		BufferedReader bf=new BufferedReader(in);
+		String str=bf.readLine();
+		System.out.println("Client:"+str);
+		
+//		PrintWriter pr=new PrintWriter(s.getOutputStream());
+		pr.println("You are welcome");
+		pr.flush();
+		
+		str=bf.readLine();
+		System.out.println("Client:"+str);
+		
+		pr.println("We can provide you Its price is Rs.100 Is there any other thing you want");
+		pr.flush();
+		
+		str=bf.readLine();
+		System.out.println("Client:"+str);
+		
+		pr.println("Ok come back soon");
+		pr.flush();
+	}
+}
